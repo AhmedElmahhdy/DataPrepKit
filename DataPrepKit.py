@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
-class DataPrepKit:
+class DataPrep:
     def __init__(self, data):
         self.data = data
         super().__init__()
