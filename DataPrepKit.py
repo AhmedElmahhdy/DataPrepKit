@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
+
 
 class DataPrep:
     def __init__(self, data):
@@ -20,13 +20,13 @@ class DataPrep:
         return data
 
     # 2- data summary
-    def data_summary(self):
-        summary = {}
-        summary['mean'] = self.data.mean()
-        summary['median'] = self.data.median()
-        summary['mode'] = self.data.mode().iloc[0]  # Mode might return multiple values
-        summary['std_dev'] = self.data.std()
-        return summary
+    # def data_summary(self):
+    #     summary = {}
+    #     summary['mean'] = self.data.mean()
+    #     summary['median'] = self.data.median()
+    #     summary['mode'] = self.data.mode().iloc[0]  # Mode might return multiple values
+    #     summary['std_dev'] = self.data.std()
+    #     return summary
 
     def summary(self):
        print(self.data.describe())
@@ -51,10 +51,6 @@ class DataPrep:
     def encode_categorical_data(self, columns):
         return pd.get_dummies(self.data, columns=columns)
 
-    def label_encoding(self, column):
-
-       label_encoder = LabelEncoder()
-       self.data[column + '_encoded'] = label_encoder.fit_transform(self.data[column])
-       return self.data
+   
 
 
