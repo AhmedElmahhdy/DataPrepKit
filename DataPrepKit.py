@@ -20,13 +20,13 @@ class DataPrep:
         return data
 
     # 2- data summary
-    # def data_summary(self):
-    #     summary = {}
-    #     summary['mean'] = self.data.mean()
-    #     summary['median'] = self.data.median()
-    #     summary['mode'] = self.data.mode().iloc[0]  # Mode might return multiple values
-    #     summary['std_dev'] = self.data.std()
-    #     return summary
+    def data_summary(self):
+        summary = {}
+        summary['mean'] = self.data.mean()
+        summary['median'] = self.data.median()
+        summary['mode'] = self.data.mode().iloc[0]  # Mode might return multiple values
+        summary['std_dev'] = self.data.std()
+        return summary
 
     def summary(self):
        print(self.data.describe())
