@@ -29,7 +29,7 @@ class DataPrep:
     #     return summary
 
     def summary(self):
-       print(data.describe())
+       print(self.data.describe())
 
     # 3- Handle missing values
     def handle_missing_valuse(self , action = '', strategy = ''):
