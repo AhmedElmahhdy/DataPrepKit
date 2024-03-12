@@ -33,19 +33,36 @@ class DataPrep:
 
     # 3- Handle missing values
     def handle_missing_valuse(self , action = '', strategy = ''):
+        column_names = self.columns.tolist()
+        df_copy = self.copy()
+
         if action == 'removing':
             return self.data.dropna()
+       
         elif action =='inputing':
-            if strategy == 'mean':
-                return self.data.fillna(self.data.mean(numeric_only=None))
-            elif strategy == 'median':
-                return self.data.fillna(self.data.median())
-            elif strategy == 'mode':
-                return self.data.fillna(self.data.mode().iloc[0])
-            else:
-                raise ValueError("Unsupported imputation strategy. Please choose from 'mean', 'median', or 'mode'.")
+         for col in column_names:
+            if df_copy[col].dtype == 'object':  # Categorical column
+              if strategy == 'mean':
+                 mode_val = df_copy[col].mean()[0]  
+                 df_copy[col].fillna(mode_val, inplace=True)  # Replace missing values with the mean
+              elif strategy == 'mode':
+                 mode_val = df_copy[col].mode()[0]  
+                 df_copy[col].fillna(mode_val, inplace=True)  # Replace missing values with the mode
+              elif strategy == 'median':
+                 mode_val = df_copy[col].mode()[0]  
+                 df_copy[col].fillna(mode_val, inplace=True)  # Replace missing values with the median
+            else:  # Numeric columns
+                if strategy == 'mean':
+                    return self.data.fillna(self.data.mean()) 
+                elif strategy == 'median':
+                    return self.data.fillna(self.data.median())
+                elif strategy == 'mode':
+                    return self.data.fillna(self.data.mode().iloc[0])
+                else:
+                    raise ValueError("Unsupported imputation strategy. Please choose from 'mean', 'median', or 'mode'.")
         else :
             raise ValueError("two functionalty is allowed removing and ")
+        return df_copy
 
     # 4- Categorical Data Encoding
     def encode_categorical_data(self, columns):
