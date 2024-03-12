@@ -53,8 +53,8 @@ class DataPrep:
                   df_copy.fillna(df_copy.median())
              elif strategy == 'mode':
                   df_copy.fillna(df_copy.mode().iloc[0])
-              else:
-                        raise ValueError("Unsupported imputation strategy. Please choose from 'mean', 'median', or 'mode'.")
+             else:
+                 raise ValueError("Unsupported imputation strategy. Please choose from 'mean', 'median', or 'mode'.")
         else :
             raise ValueError("two functionalty is allowed removing and ")
         
